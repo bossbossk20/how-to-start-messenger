@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "thanawat chookes",
   "license": "MIT",
+  "script": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.14.0",
     "request": "^2.79.0"
