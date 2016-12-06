@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-
+const token = 'EAAXEcK9g0skBAE3yIqTZBz6LymGKMZBUIWsCDeLyNbXnDDs2AotvSluqlwa7ZB53DwfFCltZBtIUuouhmuTr5pZAOGTC2n404UbHl3tMs1IRFtPGcnOgMcVDsi61kvXZAqJ9fNibmpeg6NxjZA2DrLyS7nWpmAqnVeajHJ5jdpiEwZDZD'
 app.set('port', (process.env.PORT || 5000))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -38,7 +38,6 @@ app.post('/webhook/', function (req, res) {
   }
   res.sendStatus(200)
 })
-const token = 'EAAXEcK9g0skBAE3yIqTZBz6LymGKMZBUIWsCDeLyNbXnDDs2AotvSluqlwa7ZB53DwfFCltZBtIUuouhmuTr5pZAOGTC2n404UbHl3tMs1IRFtPGcnOgMcVDsi61kvXZAqJ9fNibmpeg6NxjZA2DrLyS7nWpmAqnVeajHJ5jdpiEwZDZD'
 
 function sendTextMessage (sender, text) {
   let messageData = { text: text }
