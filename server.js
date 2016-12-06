@@ -20,7 +20,7 @@ app.get('/webhook', function (req, res) {
 })
 
 app.post('/webhook', function (req, res) {
-  let data = req.body
+  let data = req.body.event
   // Make sure this is a page subscription
   // if (data.object === 'page') {
   //   // Iterate over each entry - there may be multiple if batched
