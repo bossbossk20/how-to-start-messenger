@@ -1,0 +1,12 @@
+{
+  "name": "how-to-start-messenger",
+  "version": "1.0.0",
+  "description": "how to start messenger bot",
+  "main": "index.js",
+  "author": "thanawat chookes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
