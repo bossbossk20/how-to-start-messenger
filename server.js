@@ -3,6 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
+const axios = require('axios')
 const app = express()
 const token = 'key'
 app.set('port', (process.env.PORT || 5000))
@@ -28,7 +29,12 @@ app.post('/webhook/', function (req, res) {
         sendGenericMessage(sender)
         continue
       }
-      sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200))
+      // sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200))
+      if (text === 'test') {
+        axios.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=7fee5476cbd1705fb181c28e20c473b7').then(function (res) {
+          console.log(res.data)
+        })
+      }
     }
     if (event.postback) {
       let text = JSON.stringify(event.postback)
