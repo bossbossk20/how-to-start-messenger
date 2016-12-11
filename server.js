@@ -32,7 +32,7 @@ app.post('/webhook/', function (req, res) {
       // sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200))
         axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + text + '&APPID=7fee5476cbd1705fb181c28e20c473b7').then(function (res) {
           console.log(res.data.main.temp)
-          sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200))
+          sendTextMessage(sender, res.data.main.temp - 273)
         })
     }
     if (event.postback) {
