@@ -5,7 +5,10 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const axios = require('axios')
 const app = express()
-const token = 'EAAXEcK9g0skBAJposuJFuFuc8qGPMLpZA2C848sWZBwRFCfjjdvMRGNd9DSasHHVgdadjRBZCzYgrYDa1FxTVzlDZCSCHyBhHk13nasaVd2JN31vh5m1Kk9uVBXxJqD8m3o41yUuAmAL4d1vX7Dn5vQqJObFY78ZC1PjdNOBG2AZDZD'
+const conf_file = require('dotenv').config();
+
+const token = process.env.FB_TOKEN
+
 app.set('port', (process.env.PORT || 5000))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -30,7 +33,7 @@ app.post('/webhook/', function (req, res) {
         continue
       }
       // sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200))
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + text + '&APPID=7fee5476cbd1705fb181c28e20c473b7').then(function (res) {
+        axios.get(process.env.BASE_API +'?q=' + text + '&APPID='+process.env.BASE_API_ID).then(function (res) {
           console.log(res.data.main.temp)
           sendTextMessage(sender, res.data.main.temp - 273)
         })
@@ -47,7 +50,7 @@ app.post('/webhook/', function (req, res) {
 function sendTextMessage (sender, text) {
   let messageData = { text: text }
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
+    url: process.env.FB_GRAPH_API,
     qs: {access_token: token},
     method: 'POST',
     json: {
@@ -96,7 +99,7 @@ function sendGenericMessage (sender) {
     }
   }
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
+    url: process.env.FB_GRAPH_API,
     qs: {access_token: token},
     method: 'POST',
     json: {
